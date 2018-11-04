@@ -24,7 +24,7 @@ $response_format_text3 = "";
 if($text=="こんにちは"){
  $response_format_text = [
  "type" => "text",
- "text" => "こんにちは！"
+ "text" => "こんにちわわ！"
  ];
 }else{
  exit;
