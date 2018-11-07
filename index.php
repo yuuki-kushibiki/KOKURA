@@ -71,7 +71,7 @@ if ($message->{"text"} == '出勤確認') {
                         'actions' => [
                             [
                                 'type' => 'postback',
-                                'label' => 'webhookにpost送信',
+                                'label' => 'テスト',
                                 'data' => 'value'
                             ],
                             [
