@@ -13,7 +13,7 @@ if ($message->{"text"} == '出勤確認') {
         'altText' => '確認ダイアログ',
         'template' => [ 'type' => 'confirm', 'text' => '出勤してますか？',
             'actions' => [
-                [ 'type' => 'message', 'label' => '出勤してます。', 'text' => '出勤してますか' ],
+                [ 'type' => 'message', 'label' => '出勤してます。', 'text' => '出勤してます' ],
                 [ 'type' => 'message', 'label' => '欠席します', 'text' => '欠席します' ],
             ]
         ]
@@ -76,7 +76,7 @@ if ($message->{"text"} == '出勤確認') {
                             ],
                             [
                                 'type' => 'uri',
-                                'label' => '女美会を見る',
+                                'label' => 'ONEPIECEのHP',
                                 'uri' => 'https://jobikai.com/'
                             ]
                         ]
@@ -93,7 +93,7 @@ if ($message->{"text"} == '出勤確認') {
                                [
                                    'type' => 'uri',
                                    'label' => 'ONEPIECE',
-                                   'uri' => 'https://jobikai.com/'
+                                   'uri' => 'https://1onepiece.jp/'
                                ]
                            ]
                        ],
@@ -105,6 +105,42 @@ if ($message->{"text"} == '出勤確認') {
      // それ以外は送られてきたテキストをオウム返し
      $messageData = [ 'type' => 'text', 'text' => $message->{"text"} ];
 }
+{
+  "type": "text", // ①
+  "text": "Select your favorite food category or send me your location!",
+  "quickReply": { // ②
+    "items": [
+      {
+        "type": "action", // ③
+        "imageUrl": "https://example.com/sushi.png",
+        "action": {
+          "type": "message",
+          "label": "Sushi",
+          "text": "Sushi"
+        }
+      },
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/tempura.png",
+        "action": {
+          "type": "message",
+          "label": "Tempura",
+          "text": "Tempura"
+        }
+      },
+      {
+        "type": "action", // ④
+        "action": {
+          "type": "location",
+          "label": "Send location"
+        }
+      }
+    ]
+  }
+}
+
+
+
 $response = [ 'replyToken' => $replyToken, 'messages' => [$messageData] ];
 error_log(json_encode($response));
 $ch = curl_init('https://api.line.me/v2/bot/message/reply');
