@@ -6,15 +6,15 @@ $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
 
 
  // 送られてきたメッセージの中身からレスポンスのタイプを選択
-if ($message->{"text"} == '確認') {
+if ($message->{"text"} == '出勤確認') {
      // 確認ダイアログタイプ
     $messageData = [
         'type' => 'template',
         'altText' => '確認ダイアログ',
-        'template' => [ 'type' => 'confirm', 'text' => '元気ですかー？',
+        'template' => [ 'type' => 'confirm', 'text' => '出勤してますか？',
             'actions' => [
-                [ 'type' => 'message', 'label' => '元気です', 'text' => '元気です' ],
-                [ 'type' => 'message', 'label' => 'まあまあです', 'text' => 'まあまあです' ], 
+                [ 'type' => 'message', 'label' => '出勤してます。', 'text' => '出勤してますか' ],
+                [ 'type' => 'message', 'label' => '欠席します', 'text' => '欠席します' ],
             ]
         ]
  ];
@@ -81,10 +81,27 @@ if ($message->{"text"} == '確認') {
                             ]
                         ]
                     ],
+                    [
+                           'title' => 'カルーセル３',
+                           'text' => 'カルーセル３です',
+                           'actions' => [
+                               [
+                                   'type' => 'postback',
+                                   'label' => 'webhookにpost送信',
+                                   'data' => 'value'
+                               ],
+                               [
+                                   'type' => 'uri',
+                                   'label' => 'ONEPIECE',
+                                   'uri' => 'https://jobikai.com/'
+                               ]
+                           ]
+                       ],
                 ]
             ]
     ];
- } else {
+ }
+ else {
      // それ以外は送られてきたテキストをオウム返し
      $messageData = [ 'type' => 'text', 'text' => $message->{"text"} ];
 }
