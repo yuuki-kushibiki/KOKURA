@@ -30,7 +30,7 @@ if ($message->{"text"} == '出勤確認') {
             'actions' => [
                  [
                     'type' => 'postback',
-                    'label' => 'webhookにpost送信',
+                    'label' => 'テスト',
                     'data' => 'value'
                 ],
                  [
@@ -55,12 +55,12 @@ if ($message->{"text"} == '出勤確認') {
                      'actions' => [
                          [
                             'type' => 'postback',
-                             'label' => 'webhookにpost送信',
+                             'label' => 'テスト',
                              'data' => 'value'
                          ],
                          [
                             'type' => 'uri',
-                            'label' => '美容の口コミ広場を見る',
+                            'label' => 'テスト',
                              'uri' => 'http://clinic.e-kuchikomi.info/'
                          ]
                     ]
@@ -87,7 +87,7 @@ if ($message->{"text"} == '出勤確認') {
                            'actions' => [
                                [
                                    'type' => 'postback',
-                                   'label' => 'webhookにpost送信',
+                                   'label' => 'テスト',
                                    'data' => 'value'
                                ],
                                [
