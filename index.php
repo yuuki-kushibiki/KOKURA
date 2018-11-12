@@ -10,13 +10,10 @@ $signature = $_SERVER['HTTP_' . \ LINE \ LINEBot \ Constant \ HTTPHeader::LINE_S
 $events = $bot->parseEventRequest(file_get_contents('php://input'),$signature);
 
 foreach ($events as $event) {
-
 //replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
-replyImageMessage($bot, $event->getReplyToken(), 'https://' .
-$_SERVER['HTTP_HOST'] .
-'/imgs/original.jpg',
-'https://' . $_SERVER['HTTP_HOST'] .
-'/imgs/preview.jpg');
+replyLocationMessage($bot, $event->getReplyToken(), 'LINE' ,
+'東京都渋谷区渋谷ヒカリエ',
+35.659025,139.703473);
 }
 
 function replyTextMessage($bot, $replyToken, $text){
@@ -26,13 +23,18 @@ function replyTextMessage($bot, $replyToken, $text){
 error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
   }
 }
-
 function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl){
   $response = $bot->replyMessage($replyToken, new \ LINE \ LINEBot \ MessageBuilder \ ImageMessageBuilder($originalImageUrl, $previewImageUrl));
 
   if(!$response->isSucceeded()) {
   error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
-
 }
 
+function replyLocationMessage($bot, $replyToken, $title, $address, $lat , $lon){
+  $response = $bot->replyMessage($replyToken, new \ LINE \ LINEBot \ MessageBuilder \ LocationMessageBuilder($title, $address, $lat, $lon));
+
+  if(!$response->isSucceeded()) {
+error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
+  }
+}
 ?>
