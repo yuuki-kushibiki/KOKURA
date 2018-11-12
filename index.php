@@ -23,18 +23,18 @@ function replyTextMessage($bot, $replyToken, $text){
 error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
   }
 }
-function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl){
-  $response = $bot->replyMessage($replyToken, new \ LINE \ LINEBot \ MessageBuilder \ ImageMessageBuilder($originalImageUrl, $previewImageUrl));
+//function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl){
+//  $response = $bot->replyMessage($replyToken, new \ LINE \ LINEBot \ MessageBuilder \ ImageMessageBuilder($originalImageUrl, $previewImageUrl));
 
-  if(!$response->isSucceeded()) {
-  error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
-}
+//  if(!$response->isSucceeded()) {
+//  error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
+//}
 
 function replyLocationMessage($bot, $replyToken, $title, $address, $lat , $lon){
-  $response = $bot->replyMessage($replyToken, new \ LINE \ LINEBot \ MessageBuilder \ LocationMessageBuilder($title, $address, $lat, $lon));
+$response = $bot->replyMessage($replyToken, new \ LINE \ LINEBot \ MessageBuilder \ LocationMessageBuilder($title, $address, $lat, $lon));
 
-  if(!$response->isSucceeded()) {
+if(!$response->isSucceeded()) {
 error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
-  }
+ }
 }
 ?>
