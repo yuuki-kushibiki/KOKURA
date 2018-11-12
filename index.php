@@ -10,7 +10,16 @@ $signature = $_SERVER['HTTP_' . \ LINE \ LINEBot \ Constant \ HTTPHeader::LINE_S
 $events = $bot->parseEventRequest(file_get_contents('php://input'),$signature);
 
 foreach ($events as $event) {
-  $bot->replyText($event->getReplyToken(), 'Text');
+
+replyTextMessage($bot, $event->getReplyToken(), 'TextMessage');
+}
+
+function replyTextMessage($bot, $replyToken, $text){
+  $response = $bot->replyMessage($replyToken, new \ LINE \ LINEBot \ MessageBuilder \ TextMessageBuilder($text));
+
+  if(!$response->isSucceeded()) {
+error_log('Failed! '. $response->getHTTPStatus .' '. $response->getRAwBody());
+  }
 }
 
 ?>
